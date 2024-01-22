@@ -1,35 +1,37 @@
-import type { Metadata } from "next";
-import { PT_Sans_Narrow } from "next/font/google";
+import { Nunito } from "next/font/google";
+
+import Navbar from "@/app/components/navbar/Navbar";
+import LoginModal from "@/app/components/modal/LoginModal";
+import RegisterModal from "@/app/components/modal/RegisterModal";
+import SearchModal from "@/app/components/modal/SearchModal";
+import RentModal from "@/app/components/modal/RentModal";
+
 import "./globals.css";
-import Navbar from "./components/navbar/Navbar";
-import RegisterModal from "./components/modal/RegisterModal";
-// import ToasterProvider from "./provider/ToastProvider";
-import { Toaster } from "react-hot-toast";
-import LoginModal from "./components/modal/LoginModal";
-import getCurrentUser from "./actions/getCurrentUser";
-import RentModal from "./components/modal/RentModal";
 import ClientOnly from "./components/ClientOnly";
-import SearchModal from "./components/modal/SearchModal";
+import getCurrentUser from "./actions/getCurrentUser";
+import { Toaster } from "react-hot-toast";
 
-const fontFamily = PT_Sans_Narrow({ subsets: ["latin"], weight: ["400", "700"] });
-
-export const metadata: Metadata = {
+export const metadata = {
   title: "Airbnb Clone",
   description: "Airbnb Clone",
 };
+
+const font = Nunito({
+  subsets: ["latin"],
+});
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const currentUser = await getCurrentUser();
 
   return (
     <html lang="en">
-      <body className={fontFamily.className}>
+      <body className={font.className}>
         <ClientOnly>
           <Toaster />
           <LoginModal />
           <RegisterModal />
-          <RentModal />
           <SearchModal />
+          <RentModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         <div className="pb-20 pt-28">{children}</div>
