@@ -5,22 +5,22 @@ import axios from "axios";
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
+import { SafeListing, SafeUser } from "@/app/types";
 
 import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ListingCard from "@/app/components/listings/ListingCard";
 
-interface TripsClientProps {
+interface PropertiesClientProps {
   listings: SafeListing[];
   currentUser?: SafeUser | null;
 }
 
-const PropertiesClient: React.FC<TripsClientProps> = ({ listings, currentUser }) => {
+const PropertiesClient: React.FC<PropertiesClientProps> = ({ listings, currentUser }) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
 
-  const onCancel = useCallback(
+  const onDelete = useCallback(
     (id: string) => {
       setDeletingId(id);
 
@@ -56,12 +56,12 @@ const PropertiesClient: React.FC<TripsClientProps> = ({ listings, currentUser })
           gap-8
         "
       >
-        {listings.map((listing) => (
+        {listings.map((listing: any) => (
           <ListingCard
             key={listing.id}
             data={listing}
             actionId={listing.id}
-            onAction={onCancel}
+            onAction={onDelete}
             disabled={deletingId === listing.id}
             actionLabel="Delete property"
             currentUser={currentUser}
