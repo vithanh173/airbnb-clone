@@ -82,7 +82,18 @@ const SearchModal = () => {
     setStep(STEPS.LOCATION);
     searchModal.onClose();
     router.push(url);
-  }, [step, searchModal, location, router, guestCount, bathroomCount, dateRange, onNext, params]);
+  }, [
+    step,
+    searchModal,
+    location,
+    router,
+    guestCount,
+    roomCount,
+    bathroomCount,
+    dateRange,
+    onNext,
+    params,
+  ]);
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.INFO) {
