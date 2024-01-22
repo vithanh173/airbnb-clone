@@ -11,6 +11,8 @@ import ClientOnly from "./components/ClientOnly";
 import getCurrentUser from "./actions/getCurrentUser";
 import { Toaster } from "react-hot-toast";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Airbnb Clone",
   description: "Airbnb Clone",
